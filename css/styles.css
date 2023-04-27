@@ -1,0 +1,52 @@
+.pacini-titolo{
+    height: 120px;
+    color: black;
+    background-color: indianred;
+    text-align: center;
+    font-family: "Original Surfer", corsivo;
+}
+.pacini-jumbotron{
+    background-color: antiquewhite;
+}
+.citazione{
+    height: 90px;
+    background-color: indianred;
+    text-align: center;
+}
+.h1-titolo{
+    padding-top: 30px;
+}
+.h3-citazione{
+    padding-top: 30px;
+    font-family: "Original Surfer", corsivo;
+}
+.sfondobody{
+    background-color: wheat;
+}
+.storia-div{
+    border: 2px solid black;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: whitesmoke;
+}
+.storia-p{
+    text-align: justify;
+    font-family: "Source Code Pro", monospazio;
+}
+.pacini-titolo2{
+    height: 120px;
+    color: black;
+    background-color: antiquewhite;
+    text-align: center;
+    font-family: "Original Surfer", corsivo;
+}
+.citazione2{
+    height: 90px;
+    background-color: antiquewhite;
+    text-align: center;
+}
+.cartepazzesgravate{
+    border: 3px solid black;
+}
