@@ -54,7 +54,27 @@
     </nav>
     
     <br>
-    
+    <?php
+
+require "connect.php";
+
+  $mysqli = connect();
+
+  $query = "SELECT * FROM  where mail='" . $_POST["mail"] . "' and password='" . $_POST["password"] . "' ";
+
+  $result = $mysqli->query($query) //cambia alert
+    or die("echo query fallita ");
+
+  if ($result->num_rows > 0) {
+    header("location:Pages/home.php");
+  }
+else { //metti alert bellino
+}
+  
+
+
+
+?>
 <div class="container">
 <div class="row">
 <div class="col-sm-6 col-md-4">

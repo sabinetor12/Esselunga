@@ -39,9 +39,7 @@ create table mpeso(
     foreign key(id_prodotto) references prodotti(ID)
 );
 
-insert into reparto values (default,"Frutta e verdura");
-insert into reparto values (default,"Dolci");
-
-insert into prodotti values(default,"Torta al semolino","2")
-
-    
+insert into reparto values(default,"bevande");
+insert into prodotti values(default,"acqua",1);
+insert into prodotti values(default,"coca-cola",1);
+insert into prodotti values(default,"esta-the",1);

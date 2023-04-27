@@ -22,7 +22,7 @@
             <div class="mb-md-5 mt-md-4 pb-5">
               <form action="Signup.php" method="POST">
               <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
-              <p class="text-white-50 mb-5">Please enter your email and password!</p>
+              <p class="text-white-50 mb-5">Please enter your personal data</p>
                 
               <div class="form-outline form-white mb-4">
                 <input name="cognome" type="text" required id="typeEmailX" class="form-control form-control-lg"/>
@@ -47,7 +47,7 @@
                 <label class="form-label" for="typePasswordX">Password</label>
               </div>
 
-              <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+              <button class="btn btn-outline-light btn-lg px-5" type="submit">sign up</button>
               <form>
                   <br>
                   <br>
@@ -61,14 +61,10 @@
 </section>
 
     <?php
+require "../connect.php";
 if (isset($_POST["password"])) {
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $db = "esselungadb";
-    // connessione al DBMS
-    $mysqli = new mysqli($host, $user, $pass, $db)
-        or die("<br>Connessione non riuscita " . $mysqli->connect_error . " " . $mysqli->connect_errno);
+
+  $mysqli=connect();
 
     $query = "INSERT INTO login VALUES (default, '" . $_POST["email"] . "', '" . $_POST["cognome"] . "', '" . $_POST["indirizzo"] . "', '" . $_POST["nome"] . "', '" . $_POST["password"] . "')";
 

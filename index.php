@@ -20,12 +20,12 @@
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-            <form action="Pages/home.php " method="POST">
+            <form action="index.php " method="POST">
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
               <div class="form-outline form-white mb-4">
-                <input name="email" type="email" id="typeEmailX" class="form-control form-control-lg"/>
+                <input name="mail" type="email" id="typeEmailX" class="form-control form-control-lg"/>
                 <label class="form-label" for="typeEmailX">Email</label>
               </div>
 
@@ -36,6 +36,8 @@
 
               <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
             </div>
+
+
             </form>
             
 
@@ -51,5 +53,28 @@
     </div>
   </div>
 </section>
+
+<?php
+
+require "connect.php";
+if (isset($_POST["mail"]) && isset($_POST["password"])) 
+{
+  $mysqli = connect();
+
+  $query = "SELECT id FROM login where mail='" . $_POST["mail"] . "' and password='" . $_POST["password"] . "' ";
+
+  $result = $mysqli->query($query) //cambia alert
+    or die("echo query fallita ");
+
+  if ($result->num_rows > 0) {
+    header("location:Pages/home.php");
+  }
+  else { //metti alert bellino
+    
+  }
+
+}
+
+?>
   </body>
 </html>
