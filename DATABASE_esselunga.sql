@@ -55,7 +55,7 @@ insert into munit values(default,3,8,3);
 insert into prodotti values(default,"abbracci",2,"../Images/abbracci.jpeg");
 insert into prodotti values(default,"gocciole",2,"../Images/gocciole.jpeg");
 insert into prodotti values(default,"pan di stelle",2,"../Images/pandistelle.jpeg");
--- insert bevande in munit
+-- insert colazione in munit
 insert into munit values(default,5,10,3);
 insert into munit values(default,6,15,2);
 insert into munit values(default,7,8,2.2);
