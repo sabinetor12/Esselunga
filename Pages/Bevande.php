@@ -56,92 +56,40 @@
     <br>
     <?php
 
-require "connect.php";
+require "../connect.php";
 
   $mysqli = connect();
-
-  $query = "SELECT * FROM  where mail='" . $_POST["mail"] . "' and password='" . $_POST["password"] . "' ";
-
-  $result = $mysqli->query($query) //cambia alert
-    or die("echo query fallita ");
-
-  if ($result->num_rows > 0) {
-    header("location:Pages/home.php");
-  }
-else { //metti alert bellino
+  if ($mysqli->connect_error) {
+  die("Connection failed: " . $mysqli->connect_error);
 }
-  
 
+$query = "SELECT * FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='bevande' ";
 
+$result = $mysqli->query($query); //cambia alert
 
-?>
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-md-4">
-    <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/acqua%20naturale.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Acqua naturale 1l</h5>
-         <p class="card-text">€ 2.49</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
+if ($result != false && $result->num_rows > 0) {
+  // output data of each row
+  echo "<div class='container'>
+<div class='row'>";
+  while($row = $result->fetch_assoc()) {
+    echo "<div class='col-sm-6 col-md-4'>
+    <div class='card  cartepazzesgravate' style='width: 18rem;'>
+       <img src='".$row["immagine"]."' height=150px class='card-img-top' alt='...'>
+         <div class='card-body'>
+         <h5 class='card-title'>".$row["descrizione"]."</h5>
+         <p class='card-text'>prezzo: " . $row["costo_euro"] ."€ </p>
+         <a href='#' class='btn btn-primary'>AGGIUNGI AL CARRELLO!</a>
         </div>
      </div>
-   </div>
+   </div>";
+  }
   
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/acqua%20frizzante.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Acqua frizzante 1l</h5>
-         <p class="card-text">€ 2.79</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-     
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/vino.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Chianti DOGC 2018 75cl</h5>
-         <p class="card-text">€ 8.99</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/birra.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Ichnusa 66cl</h5>
-         <p class="card-text">€ 2.10</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-    
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/fanta.jpeg"  height=150px  class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Fanta in lattina 33cl</h5>
-         <p class="card-text">€ 0.59</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/coca%20cola.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Coca cola in lattina 33cl</h5>
-         <p class="card-text">€ 0.59</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
+  }
+else {
+  echo "nulla";
+}
+
+?>
       
     </div>
 </div>

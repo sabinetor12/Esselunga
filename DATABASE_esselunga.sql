@@ -20,6 +20,7 @@ create table prodotti(
 	ID int PRIMARY KEY auto_increment,
     descrizione varchar(64),
     idReparto int,
+    immagine varchar(512),
     foreign key(idReparto) references reparto(ID)
 );
 
@@ -39,7 +40,27 @@ create table mpeso(
     foreign key(id_prodotto) references prodotti(ID)
 );
 
-insert into reparto values(default,"bevande");
-insert into prodotti values(default,"acqua",1);
-insert into prodotti values(default,"coca-cola",1);
-insert into prodotti values(default,"esta-the",1);
+insert into reparto values(default,"bevande");-- id 1
+insert into reparto values(default,"colazione");-- id 2
+-- insert bevande
+insert into prodotti values(default,"acqua",1,"../Images/acqua naturale.jpeg");
+insert into prodotti values(default,"coca-cola",1,"../Images/coca cola.jpeg");
+insert into prodotti values(default,"fanta",1,"../Images/fanta.jpeg");
+-- insert bevande in munit
+insert into munit values(default,1,5,0.50);
+insert into munit values(default,2,10,1);
+insert into munit values(default,3,8,3);
+
+-- insert colazione 
+insert into prodotti values(default,"abbracci",2,"../Images/abbracci.jpeg");
+insert into prodotti values(default,"gocciole",2,"../Images/gocciole.jpeg");
+insert into prodotti values(default,"pan di stelle",2,"../Images/pandistelle.jpeg");
+-- insert bevande in munit
+insert into munit values(default,5,10,3);
+insert into munit values(default,6,15,2);
+insert into munit values(default,7,8,2.2);
+
+
+
+
+SELECT * FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='bevande';

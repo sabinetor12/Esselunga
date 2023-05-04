@@ -54,76 +54,42 @@
     </nav>
     
      <br>
-    
-    
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-md-4">
-    <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/gocciole.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Gocciole</h5>
-         <p class="card-text">€ 2.49</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
+    <?php
+
+require "../connect.php";
+
+$mysqli = connect();
+if ($mysqli->connect_error) {
+  die("Connection failed: " . $mysqli->connect_error);
+}
+
+$query = "SELECT * FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='colazione' ";
+
+$result = $mysqli->query($query); //cambia alert
+
+if ($result != false && $result->num_rows > 0) {
+  // output data of each row
+  echo "<div class='container'>
+<div class='row'>";
+  while ($row = $result->fetch_assoc()) {
+    echo "<div class='col-sm-6 col-md-4'>
+    <div class='card  cartepazzesgravate' style='width: 18rem;'>
+       <img src='" . $row["immagine"] . "' height=150px class='card-img-top' alt='...'>
+         <div class='card-body'>
+         <h5 class='card-title'>" . $row["descrizione"] . "</h5>
+         <p class='card-text'>prezzo: " . $row["costo_euro"] . "€ </p>
+         <a href='#' class='btn btn-primary'>AGGIUNGI AL CARRELLO!</a>
         </div>
      </div>
-   </div>
-  
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/pandistelle.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Pan di stelle</h5>
-         <p class="card-text">€ 2.69</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/nutellab.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Nutella biscuits</h5>
-         <p class="card-text">€ 3.40</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/nascondini.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Nascondini</h5>
-         <p class="card-text">€ 2.19</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/abbracci.jpeg"  height=150px  class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Abbracci</h5>
-         <p class="card-text">€ 2.30</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/macine.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Macine</h5>
-         <p class="card-text">€ 1.99</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
+   </div>";
+  }
+
+}
+else {
+  echo "nulla";
+}
+
+?>
     </div>
 </div>
     
