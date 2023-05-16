@@ -67,10 +67,13 @@ if (isset($_POST["mail"]) && isset($_POST["password"]))
     or die("echo query fallita ");
 
   if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    session_start();
+    $_SESSION["id_utente"] = $row["id"];
     header("location:Pages/home.php");
   }
   else { //metti alert bellino
-    
+
   }
 
 }

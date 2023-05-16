@@ -56,5 +56,49 @@
     
     <br>
     
+     <?php
+
+require "../connect.php";
+
+$mysqli = connect();
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+session_start();
+
+
+$query = "SELECT count(c.id_prodotto) as conta,c.id_prodotto,p.immagine,p.descrizione,mu.costo_euro FROM Prodotti p join Reparto r on p.idReparto=r.id 
+join munit mu on p.id=mu.id_prodotto join carrello c on c.id_prodotto=p.id where c.id_login=" . $_SESSION["id_utente"] . " group by c.id_login,c.id_prodotto";
+
+$result = $mysqli->query($query);
+
+if ($result != false && $result->num_rows > 0) {
+    // output data of each row
+    echo "<div class='container'>
+<div class='row'>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<form method='post' action='./Bevande.php'>
+    <div class='col-sm-6 col-md-4'>
+    <div class='card  cartepazzesgravate' style='width: 18rem;'>
+       <img src='" . $row["immagine"] . "' height=150px class='card-img-top' alt='...'>
+         <div class='card-body'>
+         <h5 class='card-title'>" . $row["descrizione"] . "</h5>
+         <p class='card-text'>prezzo unitario: " . $row["costo_euro"] . "€ 
+         <br>quantità: " . $row["conta"] . "</p>
+         <button class='btn btn-primary' type='submit'>AGGIUNGI AL CARRELLO!</button>
+        </div>
+     </div>
+   </div>
+   </form>";
+
+    }
+
+}
+else {
+    echo "nulla";
+}
+
+?>
+
   </body>
 </html>
