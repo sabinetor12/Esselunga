@@ -40,6 +40,13 @@ create table mpeso(
     foreign key(id_prodotto) references prodotti(ID)
 );
 
+create table carrello(
+	ID int PRIMARY KEY auto_increment,
+    id_prodotto int,
+    id_login int,
+    foreign key(id_login) references login(ID)
+);
+
 insert into reparto values(default,"bevande");-- id 1
 insert into reparto values(default,"colazione");-- id 2
 -- insert bevande
@@ -63,4 +70,4 @@ insert into munit values(default,7,8,2.2);
 
 
 
-SELECT * FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='bevande';
+SELECT p.id,p.immagine,p.descrizione,mu.costo_euro FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='bevande'
