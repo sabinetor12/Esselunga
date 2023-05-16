@@ -6,10 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
-    <link href = "https://fonts.googleapis.com/css2? family = Original + Surfer & display = swap" rel = "foglio di stile">
-</head>    
+    <link href = "https://fonts.googleapis.com/css2? family = Source + Code + Pro: wght @ 200 & display = swap "rel =" stylesheet ">
+    
+</head>   
 <body class="sfondobody">
-    <div class="pacini-titolo"><h1 class="h1-titolo">ESSELUNGA</h1></div>
+    <div class="pacini-titolo"><h1 class="h1-titolo">LA STORIA DI ESSELUNGA</h1></div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <img src="../Images/esselunga.png" height="50px">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="home.php"> Home</a>
+        <a class="nav-link" href="home.php"> Home <span class="sr-only">(current)</span></a>
       <li class="nav-item">
         <a class="nav-link" href="Colazione.php">Colazione</a>
       </li>
@@ -35,15 +36,14 @@
         <a class="nav-link" href="Dolci.php">Dolci</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Bevande<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="Bevande.php">Bevande</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="Casa.php">Casa</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Scuola</a>
+        <a class="nav-link" href="Scuola.php">Scuola</a>
       </li>
-      
       <li class="nav-item ">
         <a class="nav-link" href="Storia.php">La nostra storia</a>
       </li>
@@ -55,57 +55,6 @@
     </nav>
     
     <br>
-    <?php
-
-require "../connect.php";
-
-  $mysqli = connect();
-  if ($mysqli->connect_error) {
-  die("Connection failed: " . $mysqli->connect_error);
-}
-
-if(isset($_POST)){
-  $query="insert into carrello values (default,)"
-}
-
-$query = "SELECT p.id,p.immagine,p.descrizione,mu.costo_euro FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='bevande' ";
-
-$result = $mysqli->query($query); //cambia alert
-
-if ($result != false && $result->num_rows > 0) {
-  // output data of each row
-  echo "<div class='container'>
-<div class='row'>";
-  while($row = $result->fetch_assoc()) {
-    echo "<form method='post' action='./Bevande.php'>
-    <div class='col-sm-6 col-md-4'>
-    <div class='card  cartepazzesgravate' style='width: 18rem;'>
-       <img src='".$row["immagine"]."' height=150px class='card-img-top' alt='...'>
-         <div class='card-body'>
-         <h5 class='card-title'>".$row["descrizione"]."</h5>
-         <p class='card-text'>prezzo: " . $row["costo_euro"] ."€ </p>
-         <button class='btn btn-primary' type='submit'>AGGIUNGI AL CARRELLO!</button>
-        </div>
-     </div>
-   </div>
-   <input type='hidden' name='id_prodotto' value='.$row["ID"].'>
-   </form>";
-
-  }
-  
-  }
-else {
-  echo "nulla";
-}
-
-?>
-      
-    </div>
-</div>
     
-    <br>
-    
-    <div class="citazione"><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></div>
-</body>
+  </body>
 </html>
-    

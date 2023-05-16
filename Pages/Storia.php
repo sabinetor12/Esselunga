@@ -45,10 +45,10 @@
         <a class="nav-link" href="Scuola.php">Scuola</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="Buoni%20spesa.php">Buoni spesa</a>
+        <a class="nav-link" href="#">La nostra storia</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">La nostra storia</a>
+        <a class="nav-link" href="Carrello.php">Carrello</a>
       </li>
     </ul>
     </div>

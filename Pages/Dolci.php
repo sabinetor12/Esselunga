@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="home.php"> Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="home.php"> Home </a>
       <li class="nav-item">
         <a class="nav-link" href="Colazione.php">Colazione</a>
       </li>
@@ -32,7 +32,7 @@
         <a class="nav-link" href="Frutta%20e%20verdura.php">Frutta e verdura</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Dolci</a>
+        <a class="nav-link" href="#">Dolci<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="Bevande.php">Bevande</a>
@@ -43,11 +43,12 @@
       <li class="nav-item ">
         <a class="nav-link" href="Scuola.php">Scuola</a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#">Buoni spesa</a>
-      </li>
+     
       <li class="nav-item ">
         <a class="nav-link" href="Storia.php">La nostra storia</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="Carrello.php">Carrello</a>
       </li>
     </ul>
     </div>
