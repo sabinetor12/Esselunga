@@ -50,3 +50,34 @@
 .cartepazzesgravate{
     border: 3px solid black;
 }
+
+.moving{
+    position:fixed;
+    height:100%;
+    width:100%;
+
+}
+
+.moving.moving-bg{
+    box-sizing: content-box;
+    padding-bottom:300px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url(./Images/sfondoLogin.jpg);
+   background-size: cover;
+   animation:moving 30s linear infinite;
+}
+html,body{
+    height:100%;
+}
+
+@keyframes moving {
+    from{
+        tranform: translateY(0);
+    }
+    to{
+        transform:translateY(-300px)
+    }
+    
+}

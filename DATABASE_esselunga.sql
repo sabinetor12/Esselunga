@@ -27,18 +27,18 @@ create table prodotti(
 create table munit(
 	ID int PRIMARY KEY auto_increment,
     id_prodotto int,
-    quantità int,
+    quantità int check (quantità >0),
     costo_euro double,
     foreign key(id_prodotto) references prodotti(ID)
 );
 
-create table mpeso(
-	ID int PRIMARY KEY auto_increment,
-    id_prodotto int,
-    peso double,
-    costo_euro double,
-    foreign key(id_prodotto) references prodotti(ID)
-);
+-- create table mpeso(
+--	ID int PRIMARY KEY auto_increment,
+--    id_prodotto int,
+--   peso double,
+--    costo_euro double,
+--    foreign key(id_prodotto) references prodotti(ID)
+--);
 
 create table carrello(
 	ID int PRIMARY KEY auto_increment,

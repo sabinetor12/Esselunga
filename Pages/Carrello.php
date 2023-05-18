@@ -62,22 +62,30 @@ require "../connect.php";
 
 $mysqli = connect();
 if ($mysqli->connect_error) {
-    die("Connection failed: " . $mysqli->connect_error);
+  die("Connection failed: " . $mysqli->connect_error);
 }
 session_start();
-
+if (isset($_POST["id_prodotto"])) {
+  $query = "delete from carrello where id_login=" . $_SESSION["id_utente"] . " and id_prodotto=" . $_POST["id_prodotto"] . "";
+  $result = $mysqli->query($query)
+    or die("echo '<script type='text/javascript'>alert('errore');</script>';");
+}
 
 $query = "SELECT count(c.id_prodotto) as conta,c.id_prodotto,p.immagine,p.descrizione,mu.costo_euro FROM Prodotti p join Reparto r on p.idReparto=r.id 
 join munit mu on p.id=mu.id_prodotto join carrello c on c.id_prodotto=p.id where c.id_login=" . $_SESSION["id_utente"] . " group by c.id_login,c.id_prodotto";
 
+
 $result = $mysqli->query($query);
 
+$_SESSION["carrello"] = $result;
+
 if ($result != false && $result->num_rows > 0) {
-    // output data of each row
-    echo "<div class='container'>
+  // output data of each row
+  echo "<div class='container'>
 <div class='row'>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<form method='post' action='./Bevande.php'>
+  while ($row = $result->fetch_assoc()) {
+
+    echo "<form method='post' action='./Carrello.php'>
     <div class='col-sm-6 col-md-4'>
     <div class='card  cartepazzesgravate' style='width: 18rem;'>
        <img src='" . $row["immagine"] . "' height=150px class='card-img-top' alt='...'>
@@ -85,20 +93,60 @@ if ($result != false && $result->num_rows > 0) {
          <h5 class='card-title'>" . $row["descrizione"] . "</h5>
          <p class='card-text'>prezzo unitario: " . $row["costo_euro"] . "€ 
          <br>quantità: " . $row["conta"] . "</p>
-         <button class='btn btn-primary' type='submit'>AGGIUNGI AL CARRELLO!</button>
+         <button class='btn btn-primary' type='submit'>Rimuovi!</button>
         </div>
      </div>
    </div>
+   <input type='hidden' name='id_prodotto' value='" . $row["id_prodotto"] . "'>
    </form>";
 
-    }
+  }
 
 }
 else {
-    echo "nulla";
+  echo "nulla";
 }
 
 ?>
+  <div>
+    
+<form method='post' action='./Acquisto.php'>
 
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Acquista!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Acquisto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php
+
+  $query = "SELECT count(c.id_prodotto) as conta,c.id_prodotto,sum(mu.costo_euro) as costoTot FROM Prodotti p join Reparto r on p.idReparto=r.id 
+join munit mu on p.id=mu.id_prodotto join carrello c on c.id_prodotto=p.id 
+where c.id_login=".$_SESSION['id_utente']." group by c.id_login";  
+$result = $mysqli->query($query)or die($mysqli->error);
+    while ($row = $result->fetch_assoc()) {
+      echo "<p>Costo tolale: " . $row["costoTot"] . "</p>";
+    }
+?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">chiudi</button>
+        <button type="submit" class="btn btn-primary">acquista</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+  </div>
   </body>
 </html>
