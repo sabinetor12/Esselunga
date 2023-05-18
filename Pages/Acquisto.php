@@ -68,14 +68,21 @@ session_start();
 $query = "SELECT count(id_prodotto) as conta,id_prodotto,id_login
 FROM esselungadb.carrello
 where id_login =" . $_SESSION["id_utente"] . " group by id_login,id_prodotto";
-$result = $mysqli->query($query) or die($mysqli->error);
-while ($row = $result->fetch_assoc()) {
-    $query = "update munit set quantità=quantità-" . $row["conta"] . " where id_prodotto=" . $row["id_prodotto"];
-    $mysqli->query($query) or die($mysqli->error);
+
+$result = $mysqli->query($query);
+if ($result != false && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $query = "update munit set quantità=quantità-" . $row["conta"] . " where id_prodotto=" . $row["id_prodotto"];
+        $mysqli->query($query) or die($mysqli->error);
+    }
+    $query = "delete from carrello where id_login=" . $_SESSION["id_utente"];
+    $result = $mysqli->query($query);
+//acquisto riuscito
 }
-$query = "delete from carrello where id_login=" . $_SESSION["id_utente"];
-$result = $mysqli->query($query)
-    or die("echo '<script type='text/javascript'>alert('errore');</script>';");
+else {
+//acquisto fallito
+}
+
 ?>
 </body>
 </html>
