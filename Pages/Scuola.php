@@ -17,7 +17,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="home.php"> Home <span class="sr-only">(current)</span></a>
       <li class="nav-item">
         <a class="nav-link" href="Colazione.php">Colazione</a>
@@ -40,8 +40,8 @@
       <li class="nav-item ">
         <a class="nav-link" href="Casa.php">Casa</a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#">Scuola</a>
+      <li class="nav-item active">
+        <a class="nav-link">Scuola</a>
       </li>
    
       <li class="nav-item ">
@@ -55,80 +55,62 @@
     </nav>
     
     <br>
-    
-<div class="container">
-<div class="row">
-<div class="col-sm-6 col-md-4">
-    <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/astu.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Astuccio Eastpak</h5>
-         <p class="card-text">€ 9,99</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
+    <center>
+    <?php
+
+require "../connect.php";
+
+$mysqli = connect();
+if ($mysqli->connect_error) {
+  die("Connection failed: " . $mysqli->connect_error);
+}
+session_start();
+
+if (isset($_POST["id_prodotto"])) {
+  $query = "insert into carrello values (default," . $_POST["id_prodotto"] . "," . $_SESSION["id_utente"] . ")";
+  $result = $mysqli->query($query)
+    or die("echo '<script type='text/javascript'>alert('errore');</script>';");
+}
+
+$query = "SELECT p.id,p.immagine,p.descrizione,mu.costo_euro FROM Prodotti p join Reparto r on p.idReparto=r.id join munit mu on p.id=mu.id_prodotto where r.nome ='scuola' ";
+
+$result = $mysqli->query($query); //cambia alert
+
+if ($result != false && $result->num_rows > 0) {
+  // output data of each row
+  echo "<div class='container'>
+<div class='row'>";
+  while ($row = $result->fetch_assoc()) {
+    echo "<form method='post' action='./Scuola.php'>
+    <div class='col-sm-6 col-md-4'>
+    <div class='card  cartepazzesgravate' style='width: 18rem;'>
+       <img src='" . $row["immagine"] . "' height=150px class='card-img-top' alt='...'>
+         <div class='card-body'>
+         <h5 class='card-title'>" . $row["descrizione"] . "</h5>
+         <p class='card-text'>prezzo: " . $row["costo_euro"] . "€ </p>
+         <button class='btn btn-primary' type='submit'>AGGIUNGI AL CARRELLO!</button>
         </div>
      </div>
    </div>
-  
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/quaderni.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Quaderni</h5>
-         <p class="card-text">€ 3,49</p> 
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/album%20da%20disegno.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Album da disegno</h5>
-         <p class="card-text">€ 7,99</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/pennarelli.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Pennarelli</h5>
-         <p class="card-text">€ 4,99</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/matite.jpeg"  height=150px  class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Matite</h5>
-         <p class="card-text">€ 4,99</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
-      
-    <div class="col-sm-6 col-md-4">
-      <div class="card  cartepazzesgravate" style="width: 18rem;">
-       <img src="../Images/gomme.jpeg" height=150px class="card-img-top" alt="...">
-         <div class="card-body">
-         <h5 class="card-title">Gomme da cancellare</h5>
-          <p class="card-text">€ 2,29</p>
-         <a href="#" class="btn btn-primary">AGGIUNGI AL CARRELLO!</a>
-         </div>
-        </div>
-       </div>
+   <input type='hidden' name='id_prodotto' value='" . $row["id"] . "'>
+   </form>";
 
+  }
+
+}
+else {
+  echo "nulla";
+}
+
+?>
+</center>
     </div>
 </div>
     
     <br>
-    
-    <div class="citazione"><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></div>
+    <div class="citazione2">
+      <hr class="hr-color">
+      <em><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></em>
+    </div>
 </body>
 </html>

@@ -1,28 +1,44 @@
 .pacini-titolo{
     height: 120px;
-    color: black;
-    background-color: indianred;
+    color: rgb(0, 25, 80);
+    background-color: antiquewhite;
     text-align: center;
-    font-family: "Original Surfer", corsivo;
 }
+
 .pacini-jumbotron{
     background-color: antiquewhite;
 }
+
 .citazione{
     height: 90px;
-    background-color: indianred;
+    background-color: antiquewhite;
     text-align: center;
 }
+
 .h1-titolo{
+    font-weight: lighter;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding-top: 30px;
 }
+
 .h3-citazione{
     padding-top: 30px;
     font-family: "Original Surfer", corsivo;
 }
-.sfondobody{
-    background-color: wheat;
+
+.hr-color{
+    background-color: black;
 }
+
+.sfondobody{
+    overflow: scroll;
+    background-color: antiquewhite;
+}
+
+.sfondobody::-webkit-scrollbar {
+    display: none;
+}
+
 .storia-div{
     border: 2px solid black;
     margin-left: 300px;
@@ -31,10 +47,12 @@
     padding-right: 50px;
     background-color: whitesmoke;
 }
+
 .storia-p{
     text-align: justify;
     font-family: "Source Code Pro", monospazio;
 }
+
 .pacini-titolo2{
     height: 120px;
     color: black;
@@ -42,11 +60,13 @@
     text-align: center;
     font-family: "Original Surfer", corsivo;
 }
+
 .citazione2{
     height: 90px;
     background-color: antiquewhite;
     text-align: center;
 }
+
 .cartepazzesgravate{
     border: 3px solid black;
 }
@@ -65,11 +85,33 @@
     height: 100%;
     width: 100%;
     background-image: url(./Images/sfondoLogin.jpg);
-   background-size: cover;
-   animation:moving 30s linear infinite;
+    background-size: cover;
+    animation:moving 30s linear infinite;
 }
+
 html,body{
     height:100%;
+}
+
+#slide {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    -webkit-animation: slide 1s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 8s forwards infinite;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+}
+
+
+
+@-webkit-keyframes slide {
+    100% { left: -100px; }
+}
+
+@keyframes slide {
+    100% { left: -100px; }
 }
 
 @keyframes moving {

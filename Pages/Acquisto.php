@@ -55,6 +55,7 @@
     </nav>
     
     <br>
+    <center>
     <?php
 
 require "../connect.php";
@@ -77,12 +78,17 @@ if ($result != false && $result->num_rows > 0) {
     }
     $query = "delete from carrello where id_login=" . $_SESSION["id_utente"];
     $result = $mysqli->query($query);
+    echo"<h3 class='h3-citazione'>Acquisto riuscito con successo!</h3>";
 //acquisto riuscito
 }
 else {
 //acquisto fallito
+echo "<script type='text/javascript'>alert('Errore durante la conferma');</script>"; 
+
+    header("location:./Carrello.php");
 }
 
 ?>
+</center>
 </body>
 </html>

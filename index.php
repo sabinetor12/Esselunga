@@ -8,17 +8,17 @@
      <meta charset="UTF-8">
   <meta http-equity="X-UA-Compatible" content="IE-edge">
   <meta name="viewport" content="width-device-width,initial-scale=1,0">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
     
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <link href = "https://fonts.googleapis.com/css2? family = Source + Code + Pro: wght @ 200 & display = swap "rel =" stylesheet ">
     
 </head>   
-<!--<body style="background-image: url(./Images/sfondoLogin.jpg" > -->
+<body style="background-image: url(./Images/sfondoLogin.jpg)" > 
 <!-- style="background-image: url(./Images/sfondoLogin.jpg)" -->
   <div class="moving">
   <div class="moving-bg"></div>
-</div>
+  </div>
 
   <section class="vh-100 gradient-custom">
   <div class="container py-5 h-100">
@@ -28,10 +28,9 @@
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-            <form action="index.php " method="POST">
+            <form action="./index.php" method="POST">
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your login and password!</p>
-
               <div class="form-outline form-white mb-4">
                 <input name="mail" type="email" id="typeEmailX" class="form-control form-control-lg"/>
                 <label class="form-label" for="typeEmailX">Email</label>
@@ -45,11 +44,8 @@
               <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
             </div>
 
-
             </form>
-            
-
-            
+                        
             <div>
               <p class="mb-0">Don't have an account? <a href="Pages/Signup.php" class="text-white-50 fw-bold">Sign Up</a>
               </p>
@@ -64,7 +60,7 @@
 
 <?php
 
-require "connect.php";
+require ("connect.php");
 if (isset($_POST["mail"]) && isset($_POST["password"])) 
 {
   $mysqli = connect();
@@ -81,7 +77,10 @@ if (isset($_POST["mail"]) && isset($_POST["password"]))
     header("location:Pages/home.php");
   }
   else { //metti alert bellino
-
+    echo '<script type="text/javascript">
+          alert("Credenziali errate o non esistenti");
+          location="index.php";
+          </script>';
   }
 
 }

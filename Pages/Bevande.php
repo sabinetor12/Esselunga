@@ -17,7 +17,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="home.php"> Home</a>
       <li class="nav-item">
         <a class="nav-link" href="Colazione.php">Colazione</a>
@@ -34,14 +34,14 @@
       <li class="nav-item ">
         <a class="nav-link" href="Dolci.php">Dolci</a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="#">Bevande<span class="sr-only">(current)</span></a>
+      <li class="nav-item active">
+        <a class="nav-link">Bevande<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="Casa.php">Casa</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Scuola</a>
+        <a class="nav-link" href="Scuola.php">Scuola</a>
       </li>
       
       <li class="nav-item ">
@@ -55,6 +55,7 @@
     </nav>
     
     <br>
+    <center>
     <?php
 
 require "../connect.php";
@@ -64,7 +65,7 @@ if ($mysqli->connect_error) {
   die("Connection failed: " . $mysqli->connect_error);
 }
 session_start();
-print_r($_SESSION);
+
 if (isset($_POST["id_prodotto"])) {
   $query = "insert into carrello values (default," . $_POST["id_prodotto"] . "," . $_SESSION["id_utente"] . ")";
   $result = $mysqli->query($query)
@@ -102,13 +103,15 @@ else {
 }
 
 ?>
-      
+  </center>    
     </div>
 </div>
     
     <br>
-    
-    <div class="citazione"><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></div>
+    <div class="citazione2">
+      <hr class="hr-color">
+      <em><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></em>
+    </div>
 </body>
 </html>
     

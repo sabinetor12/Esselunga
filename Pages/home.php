@@ -8,7 +8,7 @@
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <link href = "https://fonts.googleapis.com/css2? family = Original + Surfer & display = swap" rel = "foglio di stile">
 </head> 
-<body>
+<body class="sfondobody" style="background-color: white;">
 <div class="pacini-titolo">
   <h1 class="h1-titolo">ESSELUNGA</h1>
 </div>
@@ -57,37 +57,41 @@
   </div>
 </nav>
 
+
     <div class="jumbotron pacini-jumbotron">
     <h1 class="display-4 text-center">Spesa facile e veloce?</h1>
     <p class="lead text-center">Sei nel posto giusto</p>
+    <hr class="hr-color">
     </div>
     
-        
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
-    <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="../Images/esselunga1.jpeg" height="500px" class="d-block w-100" alt="...">
+    <center>
+      <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
+      </ol>
+      <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../Images/esselunga6.jpeg" height="500px" class="d-block w-60" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="../Images/esselunga2.jpeg" height="500px" class="d-block w-60" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="../Images/esselunga3.jpeg" height="500px" class="d-block w-60" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="../Images/esselunga4.jpeg" height="500px" class="d-block w-60" alt="...">
+        </div>
+        <div class="carousel-item">
+        <img src="../Images/esselunga5.jpeg" height="500px" class="d-block w-60" alt="...">
       </div>
-      <div class="carousel-item">
-      <img src="../Images/esselunga2.jpeg" height="500px" class="d-block w-100" alt="...">
       </div>
-      <div class="carousel-item">
-      <img src="../Images/esselunga3.jpeg" height="500px" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-      <img src="../Images/esselunga4.jpeg" height="500px" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-      <img src="../Images/esselunga5.jpeg" height="500px" class="d-block w-100" alt="...">
-     </div>
-</div>
+    </center>
+    
 <!--
 </div>
   <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -101,8 +105,11 @@
 -->    
 <br>
         
-    
-<div class="citazione2"><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></div>
+
+<div class="citazione2">
+  <hr class="hr-color">
+  <em><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></em>
+</div>
 </body>
 </html>
       
