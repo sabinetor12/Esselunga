@@ -101,25 +101,28 @@
         </div>
      </div>
    </div>
+   
    <input type='hidden' name='id_prodotto' value='" . $row["id_prodotto"] . "'>
    </form>";
+   
       }
+      echo"</div></div><br><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter'>
+      Acquista!
+      </button><br><br>";
     } else {
       echo "<h1>Non ci sono prodotti nel carrello</h1>";
     }
 
     ?>
-    </center>
+   
     <br>
-    <center>
+    
     <div>
 
       <form method='post' action='./Acquisto.php'>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-          Acquista!
-        </button>
+        
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -139,7 +142,7 @@
                           where c.id_login=" . $_SESSION['id_utente'] . " group by c.id_login";
                 $result = $mysqli->query($query) or die($mysqli->error);
                 while ($row = $result->fetch_assoc()) {
-                  echo "<p>Costo tolale: " . $row["costoTot"] . "</p>";
+                  echo "<p>Costo tolale: " . round($row["costoTot"], 2) . "</p>";
                 }
                 ?>
               </div>

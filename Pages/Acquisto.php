@@ -69,23 +69,32 @@ session_start();
 $query = "SELECT count(id_prodotto) as conta,id_prodotto,id_login
 FROM esselungadb.carrello
 where id_login =" . $_SESSION["id_utente"] . " group by id_login,id_prodotto";
-
+$ok=true;
 $result = $mysqli->query($query);
 if ($result != false && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $query = "update munit set quantità=quantità-" . $row["conta"] . " where id_prodotto=" . $row["id_prodotto"];
-        $mysqli->query($query) or die($mysqli->error);
+      
+      $sql = "select quantità from munit where id_prodotto=".$row["id_prodotto"];
+      $resultControllo = $mysqli->query($sql);
+      $rowControllo = $resultControllo->fetch_assoc();
+      if($rowControllo["quantità"] < $row["conta"]){
+        $ok = false;
+      }
     }
-    $query = "delete from carrello where id_login=" . $_SESSION["id_utente"];
-    $result = $mysqli->query($query);
-    echo"<h3 class='h3-citazione'>Acquisto riuscito con successo!</h3>";
-//acquisto riuscito
+    if($ok){
+      while ($row = $result->fetch_assoc()) {
+        $query = "update munit set quantità=quantità-" . $row["conta"] . " where id_prodotto=" . $row["id_prodotto"];
+        $mysqli->query($query);
+      }
+      $query = "delete from carrello where id_login=" . $_SESSION["id_utente"];
+      $mysqli->query($query);
+      echo"<h3 class='h3-citazione'>Acquisto riuscito con successo!</h3>";
+    }else{echo"<h3 class='h3-citazione'>Acquisto fallito!</h3>";} 
 }
 else {
 //acquisto fallito
 echo "<script type='text/javascript'>alert('Errore durante la conferma');</script>"; 
 
-    header("location:./Carrello.php");
 }
 
 ?>

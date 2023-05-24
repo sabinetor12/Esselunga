@@ -108,7 +108,9 @@
 
 <div class="citazione2">
   <hr class="hr-color">
-  <em><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua</h3></em>
+  <em><h3 class="h3-citazione">Se non puoi venire all'esselunga, l'esselunga arriva a casa tua<br></h3>
+  </em>
+  
 </div>
 </body>
 </html>
