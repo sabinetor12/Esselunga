@@ -87,7 +87,7 @@ insert into munit values(default,9,9,2);
 -- insert salumeria
 insert into prodotti values(default,"Culatello",4,"../Images/culatello.jpeg");
 insert into prodotti values(default,"Lardo",4,"../Images/lardo.jpeg");
-insert into prodotti values(default,"Salame",4,"../Images/dit.jpeg");
+insert into prodotti values(default,"Salame",4,"../Images/unghe.jpeg");
 -- insert salumeria in munit
 insert into munit values(default,10,20,4);
 insert into munit values(default,11,8,2.9);
